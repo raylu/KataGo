@@ -2773,6 +2773,8 @@ void Search::selectBestChildToDescend(
       if(thread.history.moveHistory.size() - rootHistory.moveHistory.size() < untilDepth)
         continue;
     }
+    if(thread.board.wouldAtari(moveLoc, thread.pla))
+      continue;
 
     float nnPolicyProb = policyProbs[movePos];
     if(searchParams.antiMirror && mirroringPla != C_EMPTY) {

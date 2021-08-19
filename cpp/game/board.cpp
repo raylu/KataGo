@@ -506,7 +506,6 @@ bool Board::wouldBeCapture(Loc loc, Player pla) const {
   return false;
 }
 
-
 bool Board::wouldBeKoCapture(Loc loc, Player pla) const {
   if(colors[loc] != C_EMPTY)
     return false;
@@ -557,6 +556,21 @@ Loc Board::getKoCaptureLoc(Loc loc, Player pla) const {
   if(chain_data[chain_head[oppCapturableLoc]].num_locs != 1)
     return NULL_LOC;
   return oppCapturableLoc;
+}
+
+bool Board::wouldAtari(Loc loc, Player pla) const {
+  if(colors[loc] != C_EMPTY)
+    return false;
+  Player opp = getOpp(pla);
+  FOREACHADJ(
+    Loc adj = loc + ADJOFFSET;
+    if(colors[adj] == opp) {
+      if(getNumLiberties(adj) == 2)
+        return true;
+    }
+  );
+
+  return false;
 }
 
 bool Board::isAdjacentToPla(Loc loc, Player pla) const {

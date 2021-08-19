@@ -192,6 +192,7 @@ struct Board
   //Check if a move at this location would be a capture in a simple ko mouth.
   bool wouldBeKoCapture(Loc loc, Player pla) const;
   Loc getKoCaptureLoc(Loc loc, Player pla) const;
+  bool wouldAtari(Loc loc, Player pla) const;
   //Check if this location is adjacent to stones of the specified color
   bool isAdjacentToPla(Loc loc, Player pla) const;
   bool isAdjacentOrDiagonalToPla(Loc loc, Player pla) const;
