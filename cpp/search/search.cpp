@@ -2773,7 +2773,7 @@ void Search::selectBestChildToDescend(
       if(thread.history.moveHistory.size() - rootHistory.moveHistory.size() < untilDepth)
         continue;
     }
-    if(thread.board.wouldAtari(moveLoc, thread.pla))
+    if(thread.pla == P_WHITE && thread.board.wouldAtari(moveLoc, thread.pla))
       continue;
 
     float nnPolicyProb = policyProbs[movePos];
