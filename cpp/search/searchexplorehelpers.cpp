@@ -422,6 +422,8 @@ void Search::selectBestChildToDescend(
       if(thread.history.moveHistory.size() - rootHistory.moveHistory.size() < untilDepth)
         continue;
     }
+    if(thread.history.moveHistory.size() > 7 && rootPla == thread.pla && !thread.board.isKeima(moveLoc, thread.pla))
+      continue;
 
     //Quit immediately for illegal moves
     float nnPolicyProb = policyProbs[movePos];

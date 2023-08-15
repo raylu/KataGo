@@ -209,6 +209,8 @@ struct Board
   int numStonesOnBoard() const;
   int numPlaStonesOnBoard(Player pla) const;
 
+  bool isKeima(Loc loc, Player pla) const;
+
   //Get a hash that combines the position of the board with simple ko prohibition and a player to move.
   Hash128 getSitHashWithSimpleKo(Player pla) const;
 
