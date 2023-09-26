@@ -422,7 +422,7 @@ void Search::selectBestChildToDescend(
       if(thread.history.moveHistory.size() - rootHistory.moveHistory.size() < untilDepth)
         continue;
     }
-    if(thread.history.moveHistory.size() > 7 && rootPla == thread.pla && !thread.board.isKeima(moveLoc, thread.pla))
+    if(thread.history.moveHistory.size() > 7 && rootPla == thread.pla && !thread.board.isKeima(moveLoc, thread.pla) && moveLoc != Board::PASS_LOC)
       continue;
 
     //Quit immediately for illegal moves

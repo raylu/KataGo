@@ -1093,18 +1093,21 @@ void Board::playMoveAssumeLegal(Loc loc, Player pla)
 }
 
 bool Board::isKeima(Loc loc, Player pla) const {
-  for (int offset : {
-    -2 * (x_size + 1) - 1,
-    -2 * (x_size + 1) + 1,
-    -1 * (x_size + 1) - 2,
-    -1 * (x_size + 1) + 2,
-     1 * (x_size + 1) - 2,
-     1 * (x_size + 1) + 2,
-     2 * (x_size + 1) - 1,
-     2 * (x_size + 1) + 1,
+  for (const auto &offsets : std::vector<std::pair<int, int>>{
+    {-1 * (x_size + 1) - 1, -1 * (x_size + 1) + 0},
+    {-1 * (x_size + 1) + 1, -1 * (x_size + 1) + 0},
+    {-1 * (x_size + 1) - 1,  0 * (x_size + 1) - 1},
+    {-1 * (x_size + 1) + 1,  0 * (x_size + 1) + 1},
+    { 1 * (x_size + 1) - 1,  0 * (x_size + 1) - 1},
+    { 1 * (x_size + 1) + 1,  0 * (x_size + 1) + 1},
+    { 1 * (x_size + 1) - 1,  1 * (x_size + 1) + 0},
+    { 1 * (x_size + 1) + 1,  1 * (x_size + 1) + 0},
   }) {
-    if (isOnBoard(loc + offset) && colors[loc + offset] == pla)
-      return true;
+    if (isOnBoard(loc + offsets.first)) {
+      Loc keima = loc + offsets.first + offsets.second;
+      if (isOnBoard(keima) && colors[keima] == pla)
+        return true;
+    }
   }
   return false;
 }
