@@ -272,7 +272,7 @@ static bool shouldResign(
 
   int minTurnForResignation = 0;
   double noResignationWhenWhiteScoreAbove = board.x_size * board.y_size;
-  if(initialBlackAdvantageInPoints > 0.9 && pla == P_WHITE) {
+  if(true || (initialBlackAdvantageInPoints > 0.9 && pla == P_WHITE)) {
     //Play at least some moves no matter what
     minTurnForResignation = 1 + board.x_size * board.y_size / 5;
 
